@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en"></html>
+<head>
+  <meta charset="UTF-8">
+  <title>Task 1</title>
+</head>
+<body>
+
+</body>
+<script>
+  var image = {
+    width: 100,
+    height: 400,
+    title: 'Cool image'
+  };
+  var n;
+
+  function multiplyNumeric(image) {
+    for (n in image) {
+      if (image[n] * 1 == image[n]) {
+        image[n] = image[n] * 2;
+      }
+      console.log(n + ' : ' + image[n])
+    }
+
+  }
+
+  multiplyNumeric(image)
+</script>
+
+
