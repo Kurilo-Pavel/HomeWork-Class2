@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en"></html>
+<head>
+  <meta charset="UTF-8">
+  <title>Task 1</title>
+</head>
+<body>
+
+</body>
+<script>
+  var block = []
+  var summary = 0;
+
+  function sum() {
+    var newValue = parseInt(prompt('Введите значение:'));
+
+    if ((newValue !== undefined || null) && (isNaN(newValue) !== true)) {
+      block.push(newValue);
+      sum()
+    } else {
+      for (i = 0; i < block.length; i++)
+        summary += block[i]
+    }
+  }
+
+  sum();
+  console.log(summary);
+  alert(summary);
+</script>
