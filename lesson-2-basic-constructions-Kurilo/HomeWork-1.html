@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+  var userText = prompt('Введите предложение', 'мороженое');
+  var smallLetters = userText.toLowerCase();
+  var letters = ['у', 'е', 'ы', 'а', 'о', 'э', 'я', 'и', 'ю', 'ё'];
+  var sum = 0;
+
+  function sumVowels() {
+    for (var i = 0; i < smallLetters.length; i++) {
+      0 <= letters.indexOf(smallLetters.charAt(i)) ? sum++ : false;
+    }
+
+    console.log(sum);
+
+  }
+  sumVowels()
+
+</script>
+</html>
