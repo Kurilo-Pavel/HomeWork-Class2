@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en"></html>
+<head>
+  <meta charset="UTF-8">
+  <title>Task 1</title>
+</head>
+<body>
+
+</body>
+<script>
+  var tasksCpmpleted = {
+    'Anna': 29,
+    'Serg': 35,
+    'Elena': 1,
+    'Anton': 99
+  };
+  var names = [];
+  var result = [];
+  for (var n in tasksCpmpleted) {
+    result.push(tasksCpmpleted[n])
+    names.push(n)
+  }
+
+  function mach(r, v, i, a) {
+    return Math.max(r, v);
+  }
+
+  mach()
+  console.log(result.reduce(mach, 0))
+  console.log(result.indexOf(result.reduce(mach, 0)))
+  console.log(names[(result.indexOf(result.reduce(mach, 0)))])
+
+
+</script>
