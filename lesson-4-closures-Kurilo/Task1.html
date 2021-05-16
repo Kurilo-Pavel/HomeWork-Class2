@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<p></p>
+</body>
+<script>
+  'use strict'
+
+  function tab(numberLine, numberColumn) {
+    var s = '';
+    for (var n = 1; n <= numberColumn; n++) {
+      if (n % 2 === 0) {
+        s = s + '\n'
+        for (var i = 1; i <= numberLine; i++) {
+          if (i % 2 !== 0) {
+            s = s + ' ';
+          } else {
+            s = s + '#';
+          }
+        }
+      } else {
+        s = s + '\n'
+        for (var i = 1; i <= numberLine; i++) {
+          if (i % 2 === 0) {
+            s = s + ' ';
+          } else {
+            s = s + '#';
+          }
+        }
+      }
+    }
+    console.log(s)
+  }
+
+  tab(30, 20)
+
+
+  /*
+    var numberLine = prompt('Введите количество символов в строке', '10');
+  var numberColumn = prompt('Введите количество столбцов', '10');
+  var s = '';
+
+  function line() {
+    for (var i = 1; i <= numberLine; i++) {
+      if (i % 2 === 0) {
+        s = s + '/';
+      } else {
+        s = s + '#';
+      }
+    }
+  }
+
+  function lineEven() {
+    for (var i = 1; i <= numberLine; i++) {
+      if (i % 2 !== 0) {
+        s = s + '/';
+      } else {
+        s = s + '#';
+      }
+    }
+  }
+
+  function tab() {
+    for (var n = 1; n <= numberColumn; n++) {
+      if (n % 2 === 0) {
+        s = s + '\n'
+        lineEven()
+      } else {
+        s = s + '\n'
+        line()
+      }
+    }
+  }
+
+  tab()
+  console.log(s)
+   */
+</script>
+</html>
