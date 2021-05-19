@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<p></p>
+</body>
+<script>
+  'use strict'
+  var obj = {
+    className: 'open menu open open'
+  }
+
+  function removeClass(obj, cls) {
+    for (var key in obj) {
+      obj[key] = obj[key].split(cls).join('').trim();
+    }
+  }
+
+  removeClass(obj, 'open')
+  console.log(obj.className);
+</script>
+</html>
