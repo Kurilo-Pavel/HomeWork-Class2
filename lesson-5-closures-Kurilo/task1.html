@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Lesson 5 Kurilo</title>
+</head>
+<body>
+<p></p>
+</body>
+<script>
+  'use strict'
+  var familyJohn = {
+    bills: [124, 48, 268, 180, 42],
+    tips: [],
+    expenses: [],
+    calculator:
+      function () {
+        for (var i = 0; i < this.bills.length; i++) {
+          if (this.bills[i] < 50) {
+            this.tips.push(Math.round((this.bills[i] * 0.2) / 0.01) * 0.01)
+          } else if (this.bills[i] >= 50 && this.bills[i] < 200) {
+            this.tips.push(Math.round((this.bills[i] * 0.15) / 0.01) * 0.01)
+          } else if (this.bills[i] >= 200) {
+            this.tips.push(Math.round((this.bills[i] * 0.1) / 0.01) * 0.01)
+          }
+          this.expenses.push(this.tips[i] + this.bills[i])
+        }
+        return this.tips;
+      }
+  }
+  console.log(familyJohn.calculator()) // Почему без этого вывода в консоль, не выводит массив tips???
+
+  var familyMark = {
+    bills: [77, 375, 110, 45],
+    tips: [],
+    expenses: [],
+    calculator:
+      function () {
+        for (var i = 0; i < this.bills.length; i++) {
+          if (this.bills[i] < 100) {
+            this.tips.push(this.bills[i] * 0.2)
+          } else if (this.bills[i] >= 100 && this.bills[i] < 300) {
+            this.tips.push(this.bills[i] * 0.1)
+          } else if (this.bills[i] >= 300) {
+            this.tips.push(this.bills[i] * 0.25)
+          }
+          this.expenses.push(this.tips[i] + this.bills[i])
+        }
+        return this.tips;
+      }
+  }
+  console.log(familyMark.calculator())
+
+  /*function sum() {
+    var sumJohn=0
+    for (var n = 0; n < familyJohn.expenses.length; n++) {
+       sumJohn = sumJohn + familyJohn.expenses[n]
+    }
+    return sumJohn
+  }
+  */
+  function sumJohn(r, v, i, a) {
+    return r + v;
+  }
+
+  var averageJohn = familyJohn.tips.reduce(sumMark, 0) / familyJohn.tips.length
+
+  function sumMark(r, v, i, a) {
+    return r + v;
+  }
+
+  var averageMark = familyMark.tips.reduce(sumMark, 0) / familyMark.tips.length
+
+  function comparison() {
+    if (averageMark > averageJohn) {
+      console.log("Семья Марка в среднем оставляет больше чаевых")
+    } else if (averageMark < averageJohn) {
+      console.log("Семья Марка в среднем оставляет больше чаевых")
+    } else {
+      console.log("Семьи Марка и Джона в среднем оставляют поровну чаевых")
+    }
+  }
+
+  comparison()
+
+</script>
+</html>
