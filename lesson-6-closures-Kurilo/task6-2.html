@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title> Homework lesson 6</title>
+</head>
+<body>
+
+</body>
+<script>
+  "use strict"
+/*
+  var interviewQuestion = function (professional) {
+    return function (name) {
+      if (professional === 'designer') {
+        console.log(name + ' can you please explain what UX design is?')
+      } else if (professional === 'teacher') {
+        console.log('What subject do you teach ' + name + '?')
+      } else {
+        console.log('Hello ' + name + ', what do you do?')
+      }
+    }
+  }
+  interviewQuestion('teacher')('John');
+*/
+
+  function currying(f) {
+    return function (professional) {
+      return function (name) {
+        return f(professional, name);
+      }
+    }
+  }
+
+  function question(professional, name) {
+    if (professional === 'designer') {
+      console.log(name + ' can you please explain what UX design is?')
+    } else if (professional === 'teacher') {
+      console.log('What subject do you teach ' + name + '?')
+    } else {
+      console.log('Hello ' + name + ', what do you do?')
+    }
+  }
+
+  var interviewQuestion = currying(question);
+  interviewQuestion('teacher')('John');
+
+
+</script>
+</html>
