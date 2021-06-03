@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title> HomeWork 7 </title>
+</head>
+<body>
+
+</body>
+<script>
+
+  (function () {
+    function Question(quest, answers, trueAnswer) {
+      this.quest = quest;
+      this.answers = answers;
+      this.trueAnswer = trueAnswer;
+    }
+
+    Question.prototype.operation = function () {
+      console.log(this.quest);
+      for (var n = 0; n < this.answers.length; n++) {
+        console.log(this.answers.indexOf(this.answers[n]) + 1 + '. ' + this.answers[n])
+      }
+
+      function repeat() {
+        var result = prompt('Введите вариант ответа:')
+        if (questions[number].trueAnswer === result) {
+          alert('Поздравляем вы ответили правильно!')
+        } else if (result == null) {
+          alert('Опрос окончен')
+        } else {
+          alert('Увы ответ неправильный')
+          repeat()
+        }
+      }
+
+      repeat()
+    }
+
+    var question1 = new Question('1. Какое метод возвращает строку преобразованную к нижнему регистру?',
+      ['indexOf', 'toLowerCase', 'toUpperCase '], '2');
+
+    var question2 = new Question('2. ... - это вызов функцией самой себя.',
+      ['Рекурсия', 'Замыкание', 'Исключения'], '1')
+
+    var question3 = new Question('3. Упорядоченное множество переменных, это?',
+      ['Хэш', 'Ссылка', 'Массив'], '3')
+
+    var question4 = new Question('4.  Неупорядоченное множество переменных, это?',
+      ['Хэш', 'Ссылка', 'Массив'], '1')
+
+    var question5 = new Question('5. Какой метод возвращает квадратный корень из значения?',
+      ['abs', 'sqrt', 'ceil'], '2')
+
+    var questions = [question1, question2, question3, question4, question5]
+
+    var number = Math.floor(Math.random() * (questions.length));
+    questions[number].operation()
+  })();
+  /*
+   (function () {
+    var question1 = {
+      quest: '1. Какое метод возвращает строку преобразованную к нижнему регистру?',
+      answers: ['indexOf', 'toLowerCase', 'toUpperCase '],
+      trueAnswer: '2'
+    }
+    var question2 = {
+      quest: '2. ... - это вызов функцией самой себя.',
+      answers: ['Рекурсия', 'Замыкание', 'Исключения'],
+      trueAnswer: '1'
+    }
+    var question3 = {
+      quest: '3. Упорядоченное множество переменных, это?',
+      answers: ['Хэш', 'Ссылка', 'Массив'],
+      trueAnswer: '3'
+    }
+    var question4 = {
+      quest: '4.  Неупорядоченное множество переменных, это?',
+      answers: ['Хэш', 'Ссылка', 'Массив'],
+      trueAnswer: '1'
+    }
+    var question5 = {
+      quest: '5. Какой метод возвращает квадратный корень из значения?',
+      answers: ['abs', 'sqrt', 'ceil'],
+      trueAnswer: '2'
+    }
+    var questions = [question1, question2, question3, question4, question5]
+
+    function call() {
+      var sort = []
+      var number;
+      for (var i = 0; i < questions.length; i++) {
+        function counter() {
+          number = Math.floor(Math.random() * (questions.length))
+          for (var p = 0; p < sort.length; p++)
+            if (number === sort[p]) {
+              counter()
+            }
+        }
+        counter()
+
+        sort.push(number)
+        console.log(questions[number].quest)
+        for (var n = 0; n < questions[number].answers.length; n++) {
+          console.log(questions[number].answers.indexOf(questions[number].answers[n]) + 1 + '. ' + questions[number].answers[n])
+        }
+        console.log('**********************')
+
+        function repeat() {
+          var result = prompt('Введите вариант ответа:')
+          if (questions[number].trueAnswer === result) {
+            alert('Поздравляем вы ответили правильно!')
+          } else if (result == null && sort.length < questions.length) {
+            alert('Следующий вопрос')
+          } else if (sort.length === questions.length) {
+            alert('Опрос окончен')
+          } else {
+            alert('Увы ответ неправильный')
+            repeat()
+          }
+        }
+        repeat()
+      }
+    }
+    call()
+  })()*/
+
+</script>
+</html>
