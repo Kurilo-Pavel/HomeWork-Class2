@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title> HomeWork 9 </title>
+</head>
+<style>
+    div {
+        margin: 30px;
+        border: 2px solid red;
+        height: 100px;
+    }
+
+    button {
+        margin: 5px;
+    }
+</style>
+<body>
+<div id="table"></div>
+<button id="Add">Ввод информации о напитке</button>
+<button id="Get">Получение информации о напитке</button>
+<button id="Delete">Удаление информации о напитке</button>
+<button id="GetKey">Перечень всех напитков</button>
+</body>
+<style>
+
+</style>
+<script src="HashStorage.js"></script>
+<script>
+  'use strict'
+
+    var DrinkStorage = new ThashStorage();
+
+  document.getElementById('Add').addEventListener('click', function () {
+    Add()
+  })
+
+  function Add() {
+    var cocktaile = {}
+    var name = prompt('Название напитка: ')
+    cocktaile.Alcohol = confirm('Напиток алкагольный?')
+    if (cocktaile.Alcohol == true) {
+      cocktaile.Alcohol = 'yes'
+    } else {
+      cocktaile.Alcohol = 'no'
+    }
+    cocktaile.consist = prompt('Состав напитка: ');
+    return DrinkStorage.AddValue(name, cocktaile);
+  }
+
+  document.getElementById('Get').addEventListener('click', function () {
+    Get()
+  })
+
+  function Get() {
+    var name = prompt('Название напитка: ');
+    var inform;
+
+    if (name) {
+      inform = DrinkStorage.GetValue(name)
+
+    } else {
+      inform = 'Нет напитков'
+    }
+    var result = '';
+    if (inform) {
+      var nameCocktail = 'Напиток - ' + name;
+      var AlcoholCocktail = 'Алкогольный - ' + inform.Alcohol;
+      var consistCocktail = 'Состав - ' + inform.consist;
+      result = nameCocktail + '\n' + AlcoholCocktail + '\n' + consistCocktail
+    } else {
+      result = 'Напиток отсутствует'
+    }
+    document.querySelector('#table').textContent = result;
+  }
+
+  document.getElementById('Delete').addEventListener('click', function () {
+    Delete()
+  })
+
+  function Delete() {
+    var name = prompt('Что удалить? ');
+    var del = DrinkStorage.DeleteValue(name);
+    var result = '';
+    if (del) {
+      result = 'Удален напиток - ' + name;
+    } else {
+      result = 'Напиток не найден'
+    }
+    document.querySelector('#table').innerHTML = result;
+  }
+
+  document.getElementById('GetKey').addEventListener('click', function () {
+    GetKeys()
+  })
+
+  function GetKeys() {
+    var total = DrinkStorage.GetKey();
+    var result = '';
+    if (total.length > 0) {
+      for (var i = 1; i <= total.length; i++) {
+        result += i + total[i]
+      }
+    } else {
+      result = 'Пусто'
+    }
+    document.querySelector('#table').innerHTML = result
+  }
+
+</script>
+</html>
