@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title> HomeWork 8 task 1 </title>
+</head>
+<body>
+
+</body>
+<script>
+  (function () {
+    function Question(question, answers, correct) {
+      this.question = question;
+      this.answers = answers;
+      this.correct = correct;
+      trueAnswer = 0;
+      falseAnswer = 0;
+    }
+
+    Question.prototype.total = function () {
+      console.log('True answers = ' + trueAnswer + '\nFalse answers = ' + falseAnswer)
+    }
+
+    Question.prototype.displayQuestion = function () {
+      console.log(this.question);
+      for (var i = 0; i < this.answers.length; i++) {
+        console.log(i + ': ' + this.answers[i]);
+      }
+    }
+
+    Question.prototype.checkAnswer = function (ans) {
+      if (ans !== null && ans !== 'exit') {
+        if (ans === this.correct) {
+          console.log('Correct answer!');
+          ++trueAnswer;
+        } else {
+          console.log('Wrong answer. Try again :)');
+          ++falseAnswer;
+        }
+        repeat()
+      }
+    }
+    var q1 = new Question('Is JavaScript the coolest programming language in the world?',
+      ['Yes', 'No'],
+      '0');
+
+    var q2 = new Question('What is the name of this course\'s teacher?',
+      ['John', 'Micheal', 'Jonas'],
+      '2');
+
+    var q3 = new Question('What does best describe coding?',
+      ['Boring', 'Hard', 'Fun', 'Tediuos'],
+      '2');
+
+    function repeat() {
+      var questions = [q1, q2, q3];
+      var n = Math.floor(Math.random() * questions.length);
+      questions[n].total()
+      questions[n].displayQuestion();
+      var answer = prompt('Please select the correct answer.');
+      questions[n].checkAnswer(answer);
+    }
+
+    repeat()
+  })();
+</script>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title> HomeWork 8 task 3 </title>
+</head>
+<body>
+
+</body>
+<script>
+  function anClean(arr) {
+    var letters = [];
+    var total = [];
+    for (var i = 0; i < arr.length; i++) {
+      letters[i] = arr[i].toLowerCase().split('').sort().join('');
+    }
+    for (var n = 0; n < arr.length; n++) {
+      if (letters.indexOf(letters[n], n + 1) < 0) {
+        total.push(arr[n])
+      }
+    }
+    console.log(total)
+  }
+
+  anClean(['воз', 'киборг', 'корсет', 'ЗОВ', 'гробик', 'костер', 'сектор'])
+</script>
+</html>
