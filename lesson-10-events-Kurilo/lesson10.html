@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title> HomeWork 10 </title>
+</head>
+<body>
+<form id="form">
+
+  </select>
+</form>
+</body>
+<script>
+  "use strict"
+  var dyn_form = [
+    ['Разработчики:', {type: 'text'}],
+    ['Название сайта:', {type: 'text'}],
+    ['URL сайта:', {type: 'utl'}],
+    ['Дата запуска сайта:', {type: 'date'}],
+    ['Посетителей в сутки:', {type: 'number'}],
+    ['E-mail для связи:', {type: 'email'}],
+    ['Рубрика каталога:', {option: ['бытовая техника', 'здоровье', 'домашний уют']}],
+    ['Размещение:', {type: 'radio'}, ['чай', 'кофе']],
+    ['Разрешить отзывы:', {type: 'checkbox'}],
+    ['Описание сайта:', {rows: '7', cols: '40'}]
+  ]
+
+  var form = document.getElementById('form')
+
+  function emergence() {
+    for (var i = 0; i < dyn_form.length; i++) {
+      if ('type' in dyn_form[i][1] && dyn_form[i][2] === undefined) {
+        form.append(dyn_form[i][0])
+        var input = document.createElement('input')
+        var br = document.createElement('br')
+        form.append(input)
+        for (var k in dyn_form[i][1])
+          input.setAttribute(k, dyn_form[i][1][k])
+        form.append(br)
+
+
+      } else if ('type' in dyn_form[i][1] && dyn_form[i][2] !== undefined) {
+        form.append(dyn_form[i][0])
+        var input = document.createElement('input')
+        var br = document.createElement('br')
+
+        for (var num = 0; num < dyn_form[i][2].length; num++) {
+          var l=1
+          form.append(input)
+          input.setAttribute('value', dyn_form[i][2][num])
+          input.setAttribute('name', l)
+          for (var k in dyn_form[i][1])
+            input.setAttribute(k, dyn_form[i][1][k])
+          form.append(dyn_form[i][2][num])
+          form.append(br)
+        }
+      } else if ('option' in dyn_form[i][1]) {
+        form.append(dyn_form[i][0])
+        var select = document.createElement('select')
+        var br = document.createElement('br')
+        for (var k in dyn_form[i][1])
+          for (var m = 0; m < dyn_form[i][1][k].length; m++) {
+            form.append(select)
+            var option = document.createElement(k)
+            select.append(option)
+            option.append(dyn_form[i][1][k][m])
+            form.append(br)
+          }
+
+      } else if ('rows' in dyn_form[i][1]) {
+        form.append(dyn_form[i][0])
+        var br = document.createElement('br')
+        form.append(br)
+        var textarea = document.createElement('textarea')
+        form.append(textarea)
+        for (var k in dyn_form[i][1]) {
+          textarea.setAttribute(k, dyn_form[i][1][k]);
+        }
+      }
+    }
+  }
+
+  emergence()
+  
+
+  // var form = document.getElementById('form')
+  //
+  // function emergence() {
+  //   for (var i = 0; i < dyn_form.length; i++) {
+  //     if ('type' in dyn_form[i][1] && dyn_form[i][2] === undefined) {
+  //       form.append(dyn_form[i][0])
+  //       form.innerHTML += '<input> <br>'
+  //       var input = form.getElementsByTagName('input')
+  //       var index = dyn_form.indexOf(dyn_form[i])
+  //       for (var k in dyn_form[index][1])
+  //         for (var n = 0; n < input.length; n++)
+  //           input[n].setAttribute(k, dyn_form[n][1][k]);
+  //
+  //     } else if ('type' in dyn_form[i][1] && dyn_form[i][2] !== undefined) {
+  //       form.append(dyn_form[i][0])
+  //       for (var num = 0; num < dyn_form[i][2].length; num++)
+  //         form.innerHTML += '<input>' + dyn_form[i][2][num]
+  //       form.innerHTML += '<br>'
+  //
+  //     } else if ('option' in dyn_form[i][1]) {
+  //       form.append(dyn_form[i][0])
+  //       var select = document.getElementsByTagName('select')
+  //       for (var k in dyn_form[i][1])
+  //         for (var m = 0; m < dyn_form[i][1][k].length; m++)
+  //
+  //           form.innerHTML += '<select>' + '<option>' + dyn_form[i][1][k][m] + '</option>' + '</select><br>'
+  //
+  //     } else if ('rows' in dyn_form[i][1]) {
+  //       form.append(dyn_form[i][0])
+  //       form.innerHTML += '<br><textarea></textarea>'
+  //       var textarea = document.getElementsByTagName('textarea')
+  //       for (var k in dyn_form[i][1]) {
+  //         for (var n = 0; n < textarea.length; n++)
+  //           textarea[n].setAttribute(k, dyn_form[i][1][k]);
+  //       }
+  //     }
+  //   }
+  // }
+  // emergence()
+
+
+</script>
+</html>
