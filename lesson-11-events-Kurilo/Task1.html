@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title> HomeWork 10 </title>
+</head>
+<body>
+<img src="Skype.png" id="go">
+<img src="Instagram.png" id="go1">
+<img src="Facebook.png" id="go2">
+</body>
+<style>
+    img {
+        border-radius: 50%;
+    }
+</style>
+<script>
+  var DragImage = null;
+  var DragShiftX;
+  var DragShiftY;
+  var image = document.getElementsByTagName('img');
+  var position = [];
+  window.onload = save
+
+  function save() {
+    for (var i = 0; i < image.length; i++) {
+      position[i] = {
+        top: image[i].offsetTop + 'px',
+        left: image[i].offsetLeft + 'px'
+      }
+    }
+
+    function positions() {
+      for (var p = 0; p < position.length; p++) {
+        image[p].style.top = position[p].top;
+        image[p].style.left = position[p].left;
+        image[p].style.position = 'absolute'
+      }
+    }
+
+    positions()
+  }
+
+  document.addEventListener('mousedown', DragStart, false);
+
+  function DragStart(EO) {
+    EO = EO || window.event;
+    DragImage = document.getElementById(EO.target.id);
+    EO.preventDefault();
+    DragImage.style.zIndex = '2';
+    DragImage.style.cursor = 'grabbing';
+    var DragImageX = DragImage.offsetLeft;
+    var DragImageY = DragImage.offsetTop;
+    DragShiftX = EO.pageX - DragImageX;
+    DragShiftY = EO.pageY - DragImageY;
+    window.onmousemove = DragMove;
+    window.onmouseup = DragStop;
+  }
+
+  function DragMove(EO) {
+    EO = EO || window.event;
+    EO.preventDefault();
+    var DragImageX = EO.pageX - DragShiftX;
+    var DragImageY = EO.pageY - DragShiftY;
+    DragImage.style.left = DragImageX + 'px';
+    DragImage.style.top = DragImageY + 'px';
+    DragImage.style.cursor = 'grabbing';
+  }
+
+  function DragStop() {
+    window.onmousemove = null;
+    window.onmouseup = null;
+    DragImage.style.cursor = 'auto'
+    DragImage.style.zIndex = '1';
+  }
+
+</script>
+</html>
