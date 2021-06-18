@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title> HomeWork 12 </title>
+</head>
+<style>
+    div{
+        height: 90vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .clock {
+        width: 500px;
+        height: 500px;
+        background: yellow;
+        border-radius: 50%;
+        border: 1px solid black;
+        position: relative;
+    }
+
+    .circle {
+        width: 20px;
+        height: 20px;
+        border: 1px solid black;
+        border-radius: 50%;
+        background: white;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    .numberCircle {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background: white;
+        position: absolute;
+        transform: translate(-50%, -50%);
+    }
+
+    .text {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin: 0;
+        transform: translate(-50%, -50%);
+        font-size: 26px;
+    }
+
+    .Arrow {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        z-index: 3;
+    }
+
+    .ArrowMin {
+        height: 5px;
+        background: red;
+        border-radius: 2px 50% 50% 2px;
+        transform-origin: 0 50%;
+    }
+
+    .ArrowHour {
+        height: 5px;
+        background: blue;
+        border-radius: 2px 50% 50% 2px;
+        transform-origin: 0 50%;
+    }
+
+    .ArrowSec {
+        height: 2px;
+        background: green;
+        border-radius: 1px 50% 50% 1px;
+        transform-origin: 0 50%;
+        position: absolute;
+    }
+
+    .Times {
+        top: 30%;
+        left: 50%;
+        position: absolute;
+        transform: translate(-50%, -50%);
+        background: white;
+        font-size: 26px;
+    }
+
+</style>
+<body>
+<div id="page">
+</div >
+</body>
+<script>
+  "use strict"
+
+  var page = document.querySelector('#page');
+
+  var clock = document.createElement('div');
+  page.appendChild(clock);
+  clock.className = 'clock';
+
+  var Circle = document.createElement('div');
+  clock.appendChild(Circle);
+  Circle.className = 'circle';
+
+  var HfCircle = Circle.offsetHeight;
+  var NumberCircle = [];
+  var Radius = clock.offsetWidth / 2 - HfCircle * 2;
+
+  var ArrowMin = document.createElement('div');
+  clock.append(ArrowMin);
+  ArrowMin.className = 'ArrowMin Arrow';
+  ArrowMin.style.width = Radius / 1.2 + 'px';
+
+  var ArrowHour = document.createElement('div');
+  clock.append(ArrowHour);
+  ArrowHour.style.width = Radius / 1.5 + 'px';
+  ArrowHour.className = 'ArrowHour Arrow';
+
+  var ArrowSec = document.createElement('div');
+  clock.append(ArrowSec);
+  ArrowSec.style.width = Radius + 'px';
+  ArrowSec.className = 'ArrowSec Arrow';
+
+  var a = 120;
+  var number = 1;
+  function Number() {
+    for (var i = 0; i < 12; i++) {
+      NumberCircle[i] = document.createElement('div');
+      clock.appendChild(NumberCircle[i]);
+      var NumberC =  NumberCircle[i];
+      NumberC.className = 'numberCircle';
+      var CircleCenterX = Circle.offsetLeft - Radius * Math.cos(a / 180 * Math.PI);
+      var CircleCenterY = Circle.offsetTop - Radius * Math.sin(a / 180 * Math.PI);
+
+      NumberCircle[i].style.top = Math.round(CircleCenterY + NumberCircle[i].offsetHeight / 12) + 'px';
+      NumberCircle[i].style.left = Math.round(CircleCenterX - NumberCircle[i].offsetWidth / 12) + 'px';
+
+      var text = document.createElement('p');
+      NumberCircle[i].appendChild(text);
+      text.className = 'text';
+      a += 30;
+      text.innerHTML = number;
+      number += 1;
+    }
+  }
+
+  Number()
+
+  setInterval(UpTime, 1000);
+
+  var Times = document.createElement('span');
+  clock.append(Times);
+  Times.className = 'Times';
+
+  function zero(val, numb) {
+    var zVal = val.toString();
+    if (zVal.length < numb) {
+      zVal = '0' + zVal;
+    }
+    return zVal
+  }
+
+  function FormTime(time) {
+    var Hour = time.getHours();
+    var Min = time.getMinutes();
+    var Sec = time.getSeconds();
+    return zero(Hour, 2) + ':' + zero(Min, 2) + ":" + zero(Sec, 2);
+  }
+
+  function UpTime() {
+    var CurrTime = new Date();
+    Times.innerHTML = FormTime(CurrTime); // CurrTime.toLocaleTimeString()
+    var zeroTimes = new Date();
+    var ZeroSec = zeroTimes.getSeconds() * 6 - 90;
+    ArrowSec.style.transform = 'rotate(' + ZeroSec + 'deg)';
+    var ZeroMin = zeroTimes.getMinutes() * 6 - 90;
+    ArrowMin.style.transform = 'rotate(' + ZeroMin + 'deg)';
+    var ZeroHour = -720 + zeroTimes.getHours() * 30 + zeroTimes.getMinutes() / 2 - 90;
+    ArrowHour.style.transform = 'rotate(' + ZeroHour + 'deg)';
+
+  }
+
+</script>
+</html>
