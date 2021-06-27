@@ -1,0 +1,63 @@
+
+.field {
+    width: 60%;
+    height: 60%;
+    background: palegreen;
+    border: 1px solid black;
+    margin: 10px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.button {
+    width: auto;
+    position: absolute;
+    top: 15%;
+
+    transform: translate(0, -50%);
+    background: antiquewhite;
+    font-size: 40px;
+}
+
+.score {
+    width: auto;
+    font-size: 60px;
+    position: absolute;
+    left: 50%;
+    top: 15%;
+    transform: translate(-50%, -50%);
+}
+
+.playerOne {
+    width: 2%;
+    height: 25%;
+    background: green;
+    position: absolute;
+    border: 1px solid black;
+    top: 50%;
+    transform: translate(0, -50%);
+}
+
+.playerTwo {
+    width: 2%;
+    height: 25%;
+    right: 0;
+    background: blue;
+    position: absolute;
+    border: 1px solid black;
+    top: 50%;
+    transform: translate(0, -50%);
+}
+
+.ball {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background: red;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
