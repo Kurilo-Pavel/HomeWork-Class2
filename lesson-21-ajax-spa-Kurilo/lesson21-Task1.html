@@ -46,11 +46,12 @@
   <input type='button' value='Показать меню напитков' onclick='showDrinksMenu()'>
   <div id="message" class="drink-info"></div>
 </div>
+<script src="jquery-3.2.1.min.js"></script>
 <script src="AJAXStorage.js"></script>
 <script>
   'use strict';
 
-  var drinkStorage = new TLocalStorage();
+  var drinkStorage = new TAJAXStorage();
 
   function addDrink() {
     var drinkName = prompt('Введите название напитка', 'Test Drink').toLowerCase().trim();
