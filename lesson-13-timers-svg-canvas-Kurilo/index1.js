@@ -1,11 +1,12 @@
 "use strict"
-const baseRadius = 300; //радиус циферблата
-const numbersBaseRadius = baseRadius / 2.5; //радиус оси цифр циферблата
-const circleRadius = 30; // радиус кружков с цифрами
-const dotSize = 14; //размер точки в центре часов
-const wrapper = document.querySelector("body");
+var baseRadius = 300; //радиус циферблата
+var numbersBaseRadius = baseRadius / 2.5; //радиус оси цифр циферблата
+var circleRadius = 30; // радиус кружков с цифрами
+var dotSize = 14; //размер точки в центре часов
+var wrapper = document.querySelector("body");
+var http = "http://www.w3.org/2000/svg"
 
-const hours = {
+var hours = {
   id: 'Hour',
   x: baseRadius / 2,
   y: baseRadius / 2,
@@ -16,7 +17,7 @@ const hours = {
   stroke: 'black',
   'transform-origin': baseRadius / 2
 }
-const minutes = {
+var minutes = {
   id: 'Min',
   x: baseRadius / 2,
   y: baseRadius / 2,
@@ -27,7 +28,7 @@ const minutes = {
   stroke: 'black',
   'transform-origin': baseRadius / 2
 }
-const seconds = {
+var seconds = {
   id: 'Sec',
   x: baseRadius / 2,
   y: baseRadius / 2,
@@ -39,26 +40,17 @@ const seconds = {
   'transform-origin': baseRadius / 2
 }
 
-var circleClockFace = {cx: baseRadius / 2, cy: baseRadius / 2, r: baseRadius / 2, fill: 'yellow', stroke: 'black'}
-
-
-const http = "http://www.w3.org/2000/svg"
-
 wrapper.appendChild(createWatch());
-
 setInterval(tickTimer, 1000);
-
-// setInterval(numberWatch, 1000);
 
 function createWatch() {
   var base = document.createElementNS(http, 'svg');
+  base.setAttribute('id', 'base');
   base.setAttribute('width', baseRadius);
   base.setAttribute('height', baseRadius);
   base.setAttribute('fill', 'white');
   base.appendChild(createClockFace());
   base.appendChild(createClock());
-  base.appendChild(createDigitalWatch());
-  base.appendChild(numberWatch());
   base.appendChild(createArrow(hours));
   base.appendChild(createArrow(minutes));
   base.appendChild(createArrow(seconds));
@@ -66,11 +58,17 @@ function createWatch() {
   return base;
 }
 
-
 function createClockFace() {
+  var circleClockFace = {
+    cx: baseRadius / 2,
+    cy: baseRadius / 2,
+    r: baseRadius / 2,
+    fill: 'yellow',
+    stroke: 'black'
+  }
   var Face = document.createElementNS(http, 'circle');
   for (var k in circleClockFace)
-    Face.setAttribute(k, circleClockFace[k])
+    Face.setAttribute(k, circleClockFace[k]);
   return Face
 }
 
@@ -78,8 +76,8 @@ function createClock() {
   var clockFace = document.createDocumentFragment();
   for (var number = 1; number <= 12; number++) {
     var angle = number * 30 / 180 * Math.PI;
-    var x = ((baseRadius - circleRadius) / 2) + Math.round(Math.sin(angle) * numbersBaseRadius) + circleRadius / 2
-    var y = ((baseRadius - circleRadius) / 2) - Math.round(Math.cos(angle) * numbersBaseRadius) + circleRadius / 2
+    var x = ((baseRadius - circleRadius) / 2) + Math.round(Math.sin(angle) * numbersBaseRadius) + circleRadius / 2;
+    var y = ((baseRadius - circleRadius) / 2) - Math.round(Math.cos(angle) * numbersBaseRadius) + circleRadius / 2;
     clockFace.appendChild(createHourCircle(x, y, number));
     clockFace.appendChild(createNumber(x, y, number));
   }
@@ -87,15 +85,15 @@ function createClock() {
 }
 
 function createHourCircle(circleX, circleY, number) {
-  var circleSmall = document.createElementNS(http, 'circle')
+  var circleSmall = document.createElementNS(http, 'circle');
   var circleNumber = {cx: circleX, cy: circleY, r: circleRadius / 2, stroke: 'red'}
   for (var k in circleNumber)
-    circleSmall.setAttribute(k, circleNumber[k])
+    circleSmall.setAttribute(k, circleNumber[k]);
   return circleSmall
 }
 
 function createNumber(circleX, circleY, number) {
-  var Number = document.createElementNS(http, 'text')
+  var Number = document.createElementNS(http, 'text');
   var NumberClock = {
     y: circleY + dotSize / 3,
     x: circleX,
@@ -105,21 +103,21 @@ function createNumber(circleX, circleY, number) {
     'text-anchor': 'middle'
   }
   for (var k in NumberClock)
-    Number.setAttribute(k, NumberClock[k])
+    Number.setAttribute(k, NumberClock[k]);
   Number.appendChild(document.createTextNode(number));
   return Number
 }
 
 function createDecorativeDot() {
-  var dot = document.createElementNS(http, 'circle')
+  var dot = document.createElementNS(http, 'circle');
   var dotClock = {cx: baseRadius / 2, cy: baseRadius / 2, r: dotSize / 2, fill: 'black'}
   for (var k in dotClock)
-    dot.setAttribute(k, dotClock[k])
+    dot.setAttribute(k, dotClock[k]);
   return dot
 }
 
 function createDigitalWatch() {
-  var textClock = document.createElementNS(http, 'rect')
+  var textClock = document.createElementNS(http, 'rect');
   var text = {
     x: baseRadius / 2 - circleRadius * 1.5,
     y: baseRadius / 3,
@@ -129,14 +127,16 @@ function createDigitalWatch() {
     ry: dotSize
   }
   for (var k in text)
-    textClock.setAttribute(k, text[k])
+    textClock.setAttribute(k, text[k]);
 
-  return textClock
+  var base = document.getElementById('base');
+  base.appendChild(textClock);
+  numberWatch();
 }
 
 function numberWatch() {
   var CurrTime = new Date();
-  var WatchEl = document.createElementNS(http, 'text')
+  var WatchEl = document.createElementNS(http, 'text');
   var watch = {
     x: baseRadius / 2.1 - circleRadius,
     y: baseRadius / 2.5,
@@ -146,15 +146,16 @@ function numberWatch() {
     fill: 'white'
   }
   for (var k in watch)
-    WatchEl.setAttribute(k, watch[k])
+    WatchEl.setAttribute(k, watch[k]);
   WatchEl.appendChild(document.createTextNode(CurrTime.toLocaleTimeString()));
-  return WatchEl
+  var base = document.getElementById('base');
+  base.appendChild(WatchEl);
 }
 
 function createArrow(type) {
   var arrow = document.createElementNS(http, 'rect')
   for (var k in type)
-    arrow.setAttribute(k, type[k])
+    arrow.setAttribute(k, type[k]);
   return arrow
 }
 
@@ -166,17 +167,17 @@ function tickTimer() {
   var thisMinute = now.getMinutes();
   var thisHour = now.getHours();
   updateWatch(thisHour, thisMinute, thisSecond);
-  numberWatch()
+  createDigitalWatch(thisHour, thisMinute, thisSecond);
 }
 
 function updateWatch(hour, minute, second) {
   var thisSecondRotate = (second / 60) * 360 - 90;
-  var arrowS = document.getElementById('Sec')
-  arrowS.setAttribute('transform', 'rotate(' + thisSecondRotate + ')')
+  var arrowS = document.getElementById('Sec');
+  arrowS.setAttribute('transform', 'rotate(' + thisSecondRotate + ')');
   var thisMinuteRotate = (minute) / 60 * 360 - 90;
-  var arrowM = document.getElementById('Min')
-  arrowM.setAttribute('transform', 'rotate(' + thisMinuteRotate + ')')
+  var arrowM = document.getElementById('Min');
+  arrowM.setAttribute('transform', 'rotate(' + thisMinuteRotate + ')');
   var thisHourRotate = (hour + minute / 60) / 12 * 360 - 90;
-  var arrowH = document.getElementById('Hour')
-  arrowH.setAttribute('transform', 'rotate(' + thisHourRotate + ')')
+  var arrowH = document.getElementById('Hour');
+  arrowH.setAttribute('transform', 'rotate(' + thisHourRotate + ')');
 }
