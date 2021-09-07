@@ -1,0 +1,122 @@
+[
+{
+"id" : 1,
+"name" : "otter"
+},
+{
+"id" : 2,
+"name" : "lunx"
+},
+{
+"id" : 3,
+"name" : "muskat"
+},
+{
+"id" : 4,
+"name" : "mole"
+},
+{
+"id" : 5,
+"name" : "hedgehog"
+},
+{
+"id" : 6,
+"name" : "hippopotamus"
+},
+{
+"id" : 7,
+"name" : "goat"
+},
+{
+"id" : 8,
+"name" : "elk"
+},
+{
+"id" : 9,
+"name" : "panda"
+},
+{
+"id" : 10,
+"name" : "lion"
+},
+{
+"id" : 11,
+"name" : "leopard"
+},
+{
+"id" : 12,
+"name" : "yaguar"
+},
+{
+"id" : 13,
+"name" : "hyena"
+},
+{
+"id" : 14,
+"name" : "giraffe"
+},
+{
+"id" : 15,
+"name" : "fox"
+},
+{
+"id" : 16,
+"name" : "rabbit"
+},
+{
+"id" : 17,
+"name" : "crocodile"
+},
+{
+"id" : 18,
+"name" : "sheep"
+},
+{
+"id" : 19,
+"name" : "cow"
+},
+{
+"id" : 20,
+"name" : "horse"
+},
+{
+"id" : 21,
+"name" : "snake"
+},
+{
+"id" : 22,
+"name" : "pig"
+},
+{
+"id" : 23,
+"name" : "mouse"
+},
+{
+"id" : 24,
+"name" : "monkey"
+},
+{
+"id" : 25,
+"name" : "cat"
+},
+{
+"id" : 26,
+"name" : "dog"
+},
+{
+"id" : 27,
+"name" : "elephant"
+},
+{
+"id" : 28,
+"name" : "tiger"
+},
+{
+"id" : 29,
+"name" : "wolf"
+},
+{
+"id" : 30,
+"name" : "zebra"
+}
+]
